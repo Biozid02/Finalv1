@@ -1,37 +1,30 @@
-<%= form_for :course do |f|  %>
+<%= form_for (@course) do |f| %>
+
     <% if @course.errors.any? %>
         <div id="error_explanation">
-          <h2>
-            <%= pluralize(@course.errors.count, "error") %> prohibited
-            this article from being saved:
-          </h2>
+          <h2><%= pluralize(@course.errors.count, "error") %> prohibited this course from being saved:</h2>
+
           <ul>
-            <% @course.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
+            <% @course.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
             <% end %>
           </ul>
         </div>
     <% end %>
 
-
-
-
-    <p>
-      <%= f.label :title %><br>
-      <%= f.text_field :title %>
-    </p>
-
-    <p>
-      <%= f.label :Description %><br>
-      <%= f.text_area :description %>
-    </p>
-
-    <p>
-      <%= f.label :Credit %><br>
-      <%= f.text_field :credit %>
-    </p>
-
-    <p>
-      <%= f.submit %>
-    </p>
+    <div class="field">
+      <%= f.label :title, class: 'col-lg-2 control-label'  %><br>
+      <%= f.text_field :title, class: 'form-control' %>
+    </div>
+    <div class="field">
+      <%= f.label :description,class: 'col-lg-2 control-label'  %><br>
+      <%= f.text_field :description, class: 'form-control' %>
+    </div>
+    <div class="field">
+      <%= f.label :credit,class: 'col-lg-2 control-label'  %><br>
+      <%= f.number_field :credit , class: 'form-control' %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Add Course", class: "btn btn-primary" %>
+    </div>
 <% end %>
